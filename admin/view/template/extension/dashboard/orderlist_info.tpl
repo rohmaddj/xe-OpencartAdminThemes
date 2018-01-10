@@ -1,4 +1,4 @@
-<h3>Justified Tabs</h3>
+<h3>Order List</h3>
 <br />
 
 <div class="row">
@@ -98,7 +98,7 @@
 		        <option value="pos"><a href="pos">Point-of-sales</a></option>
 				</select>
 				</div>
-				
+
 				<div class="col-xs-3">
 					<select id="range1" class="form-control input-sm">
 		        <option value="all" selected="selected"><a href="all">Paid & Unpaid</a></option>
@@ -124,6 +124,13 @@
 			</div>
 		</div>
 	</div>
+
+<button class="btn btn-icon btn-info"> <i class="fa-truck"></i> </button>
+<button class="btn btn-icon btn-blue"> <i class="fa-print"></i> </button>
+<button class="btn btn-icon btn-success"> <i class="fa-plus"></i> </button>
+<button class="btn btn-icon btn-red"> <i class="fa-eraser"></i> </button>
+<button class="btn btn-icon btn-blue"> <i class="fa-edit"></i> </button>
+
 </div>
 </div>
 
@@ -150,7 +157,7 @@
 			<table id="order-list" class="table table-striped table-bordered" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="disable"><input type="checkbox" name="checkbox"></th>
+						<th class="disable"><input type="checkbox" name=""></th>
 						<th>No</th>
 						<th>Order Date</th>
 						<th>Delivery/Pickup Date</th>
