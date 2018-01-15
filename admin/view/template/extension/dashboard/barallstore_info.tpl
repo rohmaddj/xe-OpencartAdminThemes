@@ -14,46 +14,39 @@
 				</select>
 				</div>
 			</div>
-			<div class="panel-body">	
-				<script type="text/javascript">
-					jQuery(document).ready(function($)
-					{
-						if( ! $.isFunction($.fn.dxChart))
-							return;
-							
-						var dataSource = [
-							<?php foreach($report as $v){ ?>
-
-							{quantity: "<?= $v['quantity']?>", state:" <?= $v['state']?>", amount: "<?= $v['amount']?>"},
-
-							<?php } ?>
-						];
-						
-						$("#bar-3").dxChart({
-							equalBarWidth: false,
-							dataSource: dataSource,
-							commonSeriesSettings: {
-							    argumentField: "state",
-							    type: "bar"
-							},
-							series: [
-							    { valueField: "quantity", name: "Sales Quantity", color: "#5d97f4" },
-							    { valueField: "amount", name: "Total Amount", color: "#efab00" }
-							],
-							legend: {
-							    verticalAlignment: "bottom",
-							    horizontalAlignment: "center"
-							},
-							tooltip: {
-								enabled: true,
-								format: "largeNumber"
-							}
-							//title: "Percent of Total Energy Production"
-						});
-					});
-				</script>
-				<div id="bar-3" style="height: 400px; width: 100%;"></div>
+			<!-- new bar chart.js -->
+			<div id="container" style="width: 100%;">
+        		<canvas id="canvas1"></canvas>
 			</div>
+			<script type="text/javascript">
+				var allstoredata = 
+					{
+			            labels: [
+				        	<?php foreach($report as $v) { ?>
+				    			"<?php echo $v['state'];?>",
+				    		<?php } ?>
+				    	],
+			            datasets: [{
+			            label: 'Sales',
+			            yAxisID: 'bs-1',
+			            backgroundColor: 'rgba(153, 102, 255, 1)',
+			            data: [
+				        	<?php foreach($report as $v) { ?>
+				    			"<?php echo $v['quantity'];?>",
+				    		<?php } ?>
+				    	]}, {
+			            label:'Amount',
+			            yAxisID: 'bs-2',
+			            backgroundColor: 'rgba(255, 159, 64, 1)',
+			            data: [
+				        	<?php foreach($report as $v) { ?>
+				    			"<?php echo $v['amount'];?>",
+				    		<?php } ?>
+				    	]
+			        }]
+			    };
+
+			</script>
 		</div>
 			
 	</div>
@@ -72,28 +65,21 @@
       url: 'index.php?route=extension/dashboard/barallstore/barallstore&token=<?php echo $token; ?>&store_id='+selectedType.store_id+'&range2=' + selectedType.type,
       dataType: 'json',
       success: function(json) {
-      	var dataSource = json.report;
-						
-		$("#bar-3").dxChart({
-			equalBarWidth: false,
-			dataSource: dataSource,
-			commonSeriesSettings: {
-			    argumentField: "state",
-			    type: "bar"
-			},
-			series: [
-			    { valueField: "quantity", name: "Sales Quantity", color: "#5d97f4" },
-			    { valueField: "amount", name: "Total Amount", color: "#efab00" }
-			],
-			legend: {
-			    verticalAlignment: "bottom",
-			    horizontalAlignment: "center"
-			},
-			tooltip: {
-				enabled: true,
-				format: "largeNumber"
-			},
-		});
+      	var qty = [];
+      	var label = [];
+      	var amount = [];
+
+      	json.report.forEach((value) => {
+      		label.push(value.state);
+      		qty.push(value.quantity);
+      		amount.push(value.amount);
+      	});
+
+      	myBar1.data.labels = label;
+      	myBar1.data.datasets[0].data = qty;
+      	myBar1.data.datasets[1].data = amount;
+		myBar1.update();
+
       },
     error: function(xhr, ajaxOptions, thrownError) {
     	alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

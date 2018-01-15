@@ -1,7 +1,8 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="panel panel-default">
-				<!-- <script type="text/javascript">
+			<div class="panel-body">
+				<script type="text/javascript">
 					jQuery(document).ready(function($)
 					{
 						if( ! $.isFunction($.fn.dxChart))
@@ -13,14 +14,14 @@
 							{region: "Dine-in", val: <?php echo $report['total_amount_dinein']?>},
 							{region: "Point Of Sales", val: <?php echo $report['total_amount_pos']?>}
 						], timer;
-				
+
 						var receiptBreakdown = [
 							{region: "Sales", val: 4119626293},
 							{region: "Discount", val: 1012956064},
 							{region: "Tax", val: 344124520},
 							{region: "Service Charge", val: 590946440}
 						], timer;
-				
+
 						var paymentMode = [
 							{region: "Cash", val: 4119626293},
 							{region: "Credit Card", val: 1012956064},
@@ -61,7 +62,7 @@
 							}],
 							palette: xenonPalette
 						});
-				
+
 						// receipt breakdown
 						$("#bar-11").dxPieChart({
 							dataSource: receiptBreakdown,
@@ -91,7 +92,7 @@
 							}],
 							palette: xenonPalette
 						});
-				
+
 						// payment mode
 						$("#bar-12").dxPieChart({
 							dataSource: paymentMode,
@@ -121,121 +122,18 @@
 							}],
 							palette: xenonPalette
 						});
-						 
+						
 					});
-				</script> -->
-
-				<div style="display: flex; flex-direction: row; ">
-				<div id="bar-11" style="height:350px;width: 100%;">
-					<canvas id="ordertype" height="300px"></canvas>
+				</script>
+				<div style="display: flex; flex-direction: row; justify-content: space-between;">
+				<div id="bar-10" style="height: 380px; width: 30%;"></div>
+				<div id="bar-11" style="height: 380px; width: 30%;"></div>
+				<div id="bar-12" style="height: 380px; width: 30%;"></div>
 				</div>
-				<div id="bar-11" style="height:200px;width: 100%;">
-					<canvas id="receiptbreakdown" height="300px"></canvas>
-				</div>
-				<div id="bar-12" style="height:200px;width: 100%;">
-					<canvas id="paymentmode" height="300px"></canvas>
-				</div>
-				</div>
-			<script type="text/javascript">
-				var ordertype = {
-			        type: 'pie',
-			        data: {
-			            datasets: [{
-			                data: [10,15,67,34,56],
-			                backgroundColor: ['rgb(66, 134, 244)', 'rgb(41, 67, 109)', 'rgb(86, 89, 94)', 'rgb(144, 24, 188)', 'rgb(57, 13, 73)'],
-			                label: ''
-			            }],
-			            labels: [
-			                "Red",
-			                "Orange",
-			                "Yellow",
-			                "Green",
-			                "Blue"
-			            ]
-			        },
-			        options: {
-			            responsive: true,
-			            legend: {
-			            	display: false
-			            },
-			        	title: {
-			        		display: true,
-			        		position: 'top',
-			        		fontSize: 20,
-			        		text: 'Order Type'
-			        	},
-			        	layout: {
-			        		padding: {
-			        			left: 0,
-			        			right: 0
-			        		}
-			        	}
-			        }
-			    };
-
-			    var receiptbreakdown = {
-			        type: 'pie',
-			        data: {
-			            datasets: [{
-			                data: [10,15,67,34,56],
-			                backgroundColor: ['rgb(66, 134, 244)', 'rgb(41, 67, 109)', 'rgb(86, 89, 94)', 'rgb(144, 24, 188)', 'rgb(57, 13, 73)'],
-			                label: 'Dataset 1'
-			            }],
-			            labels: [
-			                "Red",
-			                "Orange",
-			                "Yellow",
-			                "Green",
-			                "Blue"
-			            ]
-			        },
-			        options: {
-			            responsive: true,
-			            legend: {
-			            	display: false
-			            },
-			        	title: {
-			        		display: true,
-			        		position: 'top',
-			        		fontSize: 20,
-			        		text: 'Receipt Breakdown'
-			        	}
-			        }
-			    };
-
-			    var paymentmode = {
-			        type: 'pie',
-			        data: {
-			            datasets: [{
-			                data: [10,15,67,34,56],
-			                backgroundColor: ['rgb(66, 134, 244)', 'rgb(41, 67, 109)', 'rgb(86, 89, 94)', 'rgb(144, 24, 188)', 'rgb(57, 13, 73)'],
-			                label: 'Dataset 1'
-			            }],
-			            labels: [
-			                "Red",
-			                "Orange",
-			                "Yellow",
-			                "Green",
-			                "Blue"
-			            ]
-			        },
-			        options: {
-			            responsive: true,
-			            legend: {
-			            	display: false
-			            },
-			        	title: {
-			        		display: true,
-			        		position: 'top',
-			        		fontSize: 20,
-			        		text: 'Payment Mode'
-			        	}
-			        }
-			    };
-			</script>
-			<!-- <script>
+			</div>
+			<script>
 				var xenonPalette = ['#68b828','#7c38bc','#0e62c7','#fcd036','#4fcdfc','#00b19d','#ff6264','#f7aa47'];
-				</script> -->
+				</script>
 		</div>
 		
 	</div>

@@ -14,47 +14,38 @@
 				  </select>
 				</div> -->
 			</div>
-			<div class="panel-body">	
-				<script type="text/javascript">
-					jQuery(document).ready(function($)
-					{
-						if( ! $.isFunction($.fn.dxChart))
-							return;
-							
-						var dataSource = [
-							<?php foreach($report as $v){ ?>
-
-							{quantity: "<?= $v['quantity']?>", state:" <?= $v['state']?>", amount: "<?= $v['amount']?>"},
-
-							<?php } ?>
-						];
-						
-						$("#bar-4").dxChart({
-							equalBarWidth: false,
-							dataSource: dataSource,
-							commonSeriesSettings: {
-							    argumentField: "state",
-							    type: "bar"
-							},
-							series: [
-							    { valueField: "quantity", name: "Sales Quantity", color: "#5d97f4" },
-							    { valueField: "amount", name: "Total Amount", color: "#efab00" }
-							],
-							legend: {
-							    verticalAlignment: "bottom",
-							    horizontalAlignment: "center"
-							},
-							tooltip: {
-								enabled: true,
-								format: "largeNumber"
-							}
-							//title: "Percent of Total Energy Production"
-						});
-					});
-				</script>
-				<div id="bar-4" style="height: 400px; width: 100%;"></div>
-			</div>
+			<div id="container" style="width: 100%;">
+        		<canvas id="canvas2"></canvas>
+			</div>	
+			<script type="text/javascript">
+				var bartoday = 
+				{
+			            labels: [
+				        	<?php foreach($report as $v) { ?>
+				    			"<?php echo $v['state'];?>",
+				    		<?php } ?>
+				    	],
+			            datasets: [{
+			            label: 'Sales',
+			            yAxisID: 'bt-1',
+			            backgroundColor: 'rgba(153, 102, 255, 1)',
+			            data: [
+				        	<?php foreach($report as $v) { ?>
+				    			"<?php echo $v['quantity'];?>",
+				    		<?php } ?>
+				    	]
+			        }, {
+			            label:'Amount',
+			            yAxisID: 'bt-2',
+			            backgroundColor: 'rgba(255, 159, 64, 1)',
+			            data: [
+				        	<?php foreach($report as $v) { ?>
+				    			"<?php echo $v['amount'];?>",
+				    		<?php } ?>
+				    	]
+			        }]
+			    };
+			</script>
 		</div>
-			
 	</div>
 </div>
