@@ -1,3 +1,39 @@
+<!-- embeded flex responsive css for row-->
+<style type="text/css">
+	/* Variables
+================================== */
+@bw: 3px; 
+
+
+/* Tables
+================================== */
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 3em 0;
+  padding: 0;
+}
+.Rtable-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;  
+  padding: 0.8em 1.2em;
+  overflow: hidden; 
+  list-style: none;
+  border: solid @bw white;
+  background: fade(slategrey,20%);
+  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
+}
+
+/* Table column sizing
+================================== */
+.Rtable--2cols > .Rtable-cell  { width: 50%; }
+.Rtable--3cols > .Rtable-cell  { width: 33.33%; }
+.Rtable--4cols > .Rtable-cell  { width: 25%; }
+.Rtable--5cols > .Rtable-cell  { width: 20%; }
+.Rtable--6cols > .Rtable-cell  { width: 16.6%; }
+</style>
+
 <div class="row">
 	<div class="col-sm-12">
 		<div class="panel panel-default">
@@ -125,7 +161,21 @@
 					});
 				</script> -->
 
-				<div style="display: flex; flex-direction: row; ">
+				<div class="Rtable Rtable--4cols">
+
+				  <div class="Rtable-cell">
+					<canvas id="ordertype" height="300px"></canvas>
+				  </div>
+				  <div class="Rtable-cell">
+					<canvas id="receiptbreakdown" height="300px"></canvas>
+				  </div>
+				  <div class="Rtable-cell">
+				  	<canvas id="paymentmode" height="300px"></canvas>
+				  </div>
+
+				</div>
+
+				<!-- <div style="display: flex; flex-direction: row; ">
 				<div id="bar-11" style="height:350px;width: 100%;">
 					<canvas id="ordertype" height="300px"></canvas>
 				</div>
@@ -135,22 +185,20 @@
 				<div id="bar-12" style="height:200px;width: 100%;">
 					<canvas id="paymentmode" height="300px"></canvas>
 				</div>
-				</div>
+				</div> -->
 			<script type="text/javascript">
 				var ordertype = {
 			        type: 'pie',
 			        data: {
 			            datasets: [{
-			                data: [10,15,67,34,56],
-			                backgroundColor: ['rgb(66, 134, 244)', 'rgb(41, 67, 109)', 'rgb(86, 89, 94)', 'rgb(144, 24, 188)', 'rgb(57, 13, 73)'],
-			                label: ''
+			                data: [<?php echo $report['total_amount_delivery']?>,<?php echo $report['total_amount_pickup']?>,<?php echo $report['total_amount_dinein']?>,<?php echo $report['total_amount_pos']?>],
+			                backgroundColor: ['red', 'orange', 'blue', 'green']
 			            }],
 			            labels: [
-			                "Red",
-			                "Orange",
-			                "Yellow",
-			                "Green",
-			                "Blue"
+			                "Delivery",
+			                "Pickup",
+			                "Dine-in",
+			                "Point of Sales"
 			            ]
 			        },
 			        options: {
@@ -177,16 +225,14 @@
 			        type: 'pie',
 			        data: {
 			            datasets: [{
-			                data: [10,15,67,34,56],
-			                backgroundColor: ['rgb(66, 134, 244)', 'rgb(41, 67, 109)', 'rgb(86, 89, 94)', 'rgb(144, 24, 188)', 'rgb(57, 13, 73)'],
-			                label: 'Dataset 1'
+			                data: [<?php echo $report['total_amount_delivery']?>,<?php echo $report['total_amount_pickup']?>,<?php echo $report['total_amount_dinein']?>,<?php echo $report['total_amount_pos']?>],
+			                backgroundColor: ['red', 'orange', 'blue', 'green']
 			            }],
 			            labels: [
-			                "Red",
-			                "Orange",
-			                "Yellow",
-			                "Green",
-			                "Blue"
+			                "Delivery",
+			                "Pickup",
+			                "Dine-in",
+			                "Point of Sales"
 			            ]
 			        },
 			        options: {
@@ -207,16 +253,14 @@
 			        type: 'pie',
 			        data: {
 			            datasets: [{
-			                data: [10,15,67,34,56],
-			                backgroundColor: ['rgb(66, 134, 244)', 'rgb(41, 67, 109)', 'rgb(86, 89, 94)', 'rgb(144, 24, 188)', 'rgb(57, 13, 73)'],
-			                label: 'Dataset 1'
+			                data: [<?php echo $report['total_amount_delivery']?>,<?php echo $report['total_amount_pickup']?>,<?php echo $report['total_amount_dinein']?>,<?php echo $report['total_amount_pos']?>],
+			                backgroundColor: ['red', 'orange', 'blue', 'green']
 			            }],
 			            labels: [
-			                "Red",
-			                "Orange",
-			                "Yellow",
-			                "Green",
-			                "Blue"
+			                "Delivery",
+			                "Pickup",
+			                "Dine-in",
+			                "Point of Sales"
 			            ]
 			        },
 			        options: {
