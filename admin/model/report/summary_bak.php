@@ -88,10 +88,7 @@ class ModelReportSummary extends Model {
 		
 		$query_amount_pos = $this->db->query($sql_amount_pos);
 
-		// query bar all order
-		$querybarallorder = $this->db->query("SELECT count(oh.order_history_id) as quantity, DATE_FORMAT(oh.date_added, '%M %d') as state, SUM(total) as amount FROM `" . DB_PREFIX . "order` as o INNER JOIN `" . DB_PREFIX . "order_history` as oh ON o.order_id = oh.order_id WHERE DATE(oh.date_added) = DATE(NOW()) GROUP BY DATE(oh.date_added)");
-
-		return ['barallorder' => $querybarallorder->rows, 'totaldelivery' => $querydelivery->rows[0]['totaldelivery'], 'total_amount_delivery' => $query_amount_delivery->rows[0]['total_amount_delivery'], 'totalpickup' => $querypickup->rows[0]['totalpickup'], 'total_amount_pickup' => $query_amount_pickup->rows[0]['total_amount_pickup'], 'totaldinein' => $querydinein->rows[0]['totaldinein'], 'total_amount_dinein' => $query_amount_dinein->rows[0]['total_amount_dinein'], 'totalpos' => $querypos->rows[0]['totalpos'], 'total_amount_pos' => $query_amount_pos->rows[0]['total_amount_pos']];
+		return ['totaldelivery' => $querydelivery->rows[0]['totaldelivery'], 'total_amount_delivery' => $query_amount_delivery->rows[0]['total_amount_delivery'], 'totalpickup' => $querypickup->rows[0]['totalpickup'], 'total_amount_pickup' => $query_amount_pickup->rows[0]['total_amount_pickup'], 'totaldinein' => $querydinein->rows[0]['totaldinein'], 'total_amount_dinein' => $query_amount_dinein->rows[0]['total_amount_dinein'], 'totalpos' => $querypos->rows[0]['totalpos'], 'total_amount_pos' => $query_amount_pos->rows[0]['total_amount_pos']];
 	}
 
 	public function getTotalSummarysByWeek($week) {
@@ -132,10 +129,7 @@ class ModelReportSummary extends Model {
 		
 		$query_amount_pos = $this->db->query($sql_amount_pos);
 
-		// query bar all order
-		$querybarallorder = $this->db->query("SELECT count(oh.order_history_id) as quantity, DATE_FORMAT(oh.date_added, '%M %d') as state, SUM(total) as amount FROM `" . DB_PREFIX . "order` as o INNER JOIN `" . DB_PREFIX . "order_history` as oh ON o.order_id = oh.order_id WHERE DATE(oh.date_added) >= $week GROUP BY DATE(oh.date_added)");
-
-		return ['barallorder' => $querybarallorder->rows, 'totaldelivery' => $querydelivery->rows[0]['totaldelivery'], 'total_amount_delivery' => $query_amount_delivery->rows[0]['total_amount_delivery'], 'totalpickup' => $querypickup->rows[0]['totalpickup'], 'total_amount_pickup' => $query_amount_pickup->rows[0]['total_amount_pickup'], 'totaldinein' => $querydinein->rows[0]['totaldinein'], 'total_amount_dinein' => $query_amount_dinein->rows[0]['total_amount_dinein'], 'totalpos' => $querypos->rows[0]['totalpos'], 'total_amount_pos' => $query_amount_pos->rows[0]['total_amount_pos']];
+		return ['totaldelivery' => $querydelivery->rows[0]['totaldelivery'], 'total_amount_delivery' => $query_amount_delivery->rows[0]['total_amount_delivery'], 'totalpickup' => $querypickup->rows[0]['totalpickup'], 'total_amount_pickup' => $query_amount_pickup->rows[0]['total_amount_pickup'], 'totaldinein' => $querydinein->rows[0]['totaldinein'], 'total_amount_dinein' => $query_amount_dinein->rows[0]['total_amount_dinein'], 'totalpos' => $querypos->rows[0]['totalpos'], 'total_amount_pos' => $query_amount_pos->rows[0]['total_amount_pos']];
 	}
 
 	public function getTotalSummarysByMonth($month) {

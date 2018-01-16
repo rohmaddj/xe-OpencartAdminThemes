@@ -1,16 +1,16 @@
 <!-- Xenon Block Counter Widget -->
       <div class="row">
       <div class="col-xs-6"></div>
-      <div class="col-xs-2"></div>
-      <div class="col-xs-2"></div>
-      <div class="col-xs-2" style="margin-bottom: 10px">
+      <div class="col-xs-3">
+        <input type="text" class="form-control daterange" data-format="YYYY-MM-DD" data-start-date="2018-01-01" data-end-date="2018-01-30" separator="to" name="" placeholder="filter custom date here..">
+      </div>
+      <div class="col-xs-3" style="margin-bottom: 10px">
       <select id="range" class="form-control input-sm">
         <option value="day"><a href="day">Today</a></option>
         <option value="week" selected="selected"><a href="week">Last 7 Days</a></option>
         <option value="month"><a href="month">Last 30 Days</a></option>
         <option value="this-month"><a href="year">This Month</a></option>
         <option value="last-month"><a href="year">Last Month</a></option>
-        <option value="custom"><a href="year">Custom Date</a></option>
       </select>
       </div>
 
@@ -138,6 +138,24 @@
         $("#total_amount_pickup").text('$' + total_amount_pickup);
         $("#total_amount_dinein").text('$' + total_amount_dinein);
         $("#total_amount_pos").text('$'+ total_amount_pos );
+
+        //triger for bar all order
+        var qty = [];
+        var label = [];
+        var amount = [];
+
+        json.report.barallorder.forEach((value) => {
+          label.push(value.state);
+          qty.push(value.quantity);
+          amount.push(value.amount);
+        });
+
+        myBar.data.labels = label;
+        myBar.data.datasets[0].data = qty;
+        myBar.data.datasets[1].data = amount;
+        myBar.update();
+
+       console.log(json);
 
       },
           error: function(xhr, ajaxOptions, thrownError) {
